@@ -19,28 +19,26 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.example.studentsystem.utils.dbHelperOfCourse;
+import com.example.studentsystem.utils.dbHelper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class ManageActivity extends AppCompatActivity {
 
-    private LinearLayout line2;
-    private EditText     courseName;
-    private EditText     courseTeacher;
-    private EditText     courseTime;
-    private Button       addCourse;
-    private ListView     listOfCourseInManage;
+    private EditText courseName;
+    private EditText courseTeacher;
+    private EditText courseTime;
+    private Button   addCourse;
+    private ListView listOfCourseInManage;
 
-    dbHelperOfCourse dbHelperOfCourse;
-    String           DB_Name = "mydb";
-    SQLiteDatabase   database;
-    Cursor           cursor;
-    boolean          dbFlag;
+    dbHelper       dbHelper;
+    String         DB_Name = "mydb";
+    SQLiteDatabase database;
+    Cursor         cursor;
+    boolean        dbFlag=true;
 
     private static String[] PERMISSIONS_STORGE      = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -65,7 +63,6 @@ public class ManageActivity extends AppCompatActivity {
             }
         }
 
-        line2 = findViewById(R.id.line2);
         courseName = findViewById(R.id.courseName);
         courseTeacher = findViewById(R.id.courseTeacher);
         courseTime = findViewById(R.id.courseTime);
@@ -74,8 +71,8 @@ public class ManageActivity extends AppCompatActivity {
 
 
         //创建链接，并打开数据库
-        dbHelperOfCourse = new dbHelperOfCourse(this, DB_Name, null, 1);
-        database = dbHelperOfCourse.getWritableDatabase();
+        dbHelper = new dbHelper(this, DB_Name, null, 1);
+        database = dbHelper.getWritableDatabase();
 
         addCourse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +85,7 @@ public class ManageActivity extends AppCompatActivity {
                     Toast.makeText(ManageActivity.this, "数据不能为空", Toast.LENGTH_SHORT).show();
                 } else {
                     ContentValues values = new ContentValues();
-                    cursor = database.query(dbHelperOfCourse.TB_Name, null, null, null, null, null, null);
+                    cursor = database.query(dbHelper.TB_Name2, null, null, null, null, null, null);
                     cursor.moveToFirst();
                     while (!cursor.isAfterLast()) {
                         if (name.equals(cursor.getString(1))) {
@@ -101,11 +98,15 @@ public class ManageActivity extends AppCompatActivity {
                         values.put("courseName", name);
                         values.put("courseTeacher", teacher);
                         values.put("courseTime", time);
-                        long rowId = database.insert(dbHelperOfCourse.TB_Name, null, values);
+                        long rowId = database.insert(dbHelper.TB_Name2, null, values);
                         if (rowId == -1) {
                             Toast.makeText(ManageActivity.this, "发生未知错误", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(ManageActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
+                            //todo:最后把这里复原
+                            /*courseName.setText("");
+                            courseTeacher.setText("");
+                            courseTime.setText("");*/
                         }
                     } else {
                         Toast.makeText(ManageActivity.this, "课程名称已存在", Toast.LENGTH_SHORT).show();
@@ -121,10 +122,9 @@ public class ManageActivity extends AppCompatActivity {
     }
 
     public void showCoursesOnListView() {
-        dbHelperOfCourse = new dbHelperOfCourse(this, DB_Name, null, 1);
-        database = dbHelperOfCourse.getWritableDatabase();
-        //todo:现在这里出现里问题，原因是没创建表
-        cursor = database.query(dbHelperOfCourse.TB_Name, null, null, null, null, null, "cid ASC");
+        dbHelper = new dbHelper(this, DB_Name, null, 1);
+        database = dbHelper.getWritableDatabase();
+        cursor = database.query(dbHelper.TB_Name2, null, null, null, null, null, "cid ASC");
         cursor.moveToFirst();
         List<Map<String, Object>> list = new ArrayList<>();
 

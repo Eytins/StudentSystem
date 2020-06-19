@@ -36,7 +36,7 @@
             android:ems="10"
             android:gravity="center"
             android:hint="课程老师"
-            android:inputType="textPassword"
+            android:inputType="textPersonName"
             android:textColor="@color/colorBlue"
             android:textColorHint="@color/colorLightBlue"
             android:theme="@style/MyEditText" />

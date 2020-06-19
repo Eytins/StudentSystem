@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class dbHelper extends SQLiteOpenHelper {
 
     public String TB_Name = "userinfo";
+    public String TB_Name2 = "course";
 
     public dbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -21,11 +22,19 @@ public class dbHelper extends SQLiteOpenHelper {
                 + "hometown varchar,"
                 + "picture varchar"
                 + ")");
+
+        sqLiteDatabase.execSQL("create table if not exists " + TB_Name2
+                + "(cid integer primary key autoincrement,"
+                + "courseName varchar,"
+                + "courseTeacher varchar,"
+                + "courseTime varchar"
+                + ")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("drop table if exists " + TB_Name);
+        sqLiteDatabase.execSQL("drop table if exists " + TB_Name2);
         onCreate(sqLiteDatabase);
     }
 }

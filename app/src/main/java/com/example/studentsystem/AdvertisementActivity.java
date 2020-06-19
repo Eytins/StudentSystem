@@ -70,7 +70,6 @@ public class AdvertisementActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 timer.cancel();
-                //todo:Intent's useMethod
                 //startActivity(new Intent().setClass(AdvertisementActivity.this, LoginActivity.class));
                 Intent intent = new Intent();
                 intent.setClass(AdvertisementActivity.this, LoginActivity.class);
