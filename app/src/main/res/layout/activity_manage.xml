@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ManageActivity">
+
+    <LinearLayout
+        android:id="@+id/line2"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/courseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="课程名称"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorBlue"
+            android:textColorHint="@color/colorLightBlue"
+            android:theme="@style/MyEditText"
+            tools:ignore="LabelFor" />
+
+
+        <EditText
+            android:id="@+id/courseTeacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="课程老师"
+            android:inputType="textPassword"
+            android:textColor="@color/colorBlue"
+            android:textColorHint="@color/colorLightBlue"
+            android:theme="@style/MyEditText" />
+
+
+        <EditText
+            android:id="@+id/courseTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="课程时间"
+            android:inputType="text"
+            android:textColor="@color/colorBlue"
+            android:textColorHint="@color/colorLightBlue"
+            android:theme="@style/MyEditText" />
+
+        <Button
+            android:id="@+id/addCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/button_selector"
+            android:text="添     加"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listOfCourseInManage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line2"
+        android:layout_marginTop="20dp"
+        android:layout_alignStart="@+id/line2"
+        android:layout_alignEnd="@+id/line2" />
+</RelativeLayout>

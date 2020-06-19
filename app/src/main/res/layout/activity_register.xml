@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity"
+    android:background="@drawable/login_bg">
+
+    <ImageView
+        android:id="@+id/personalImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/default_personal_image" />
+
+    <LinearLayout
+        android:id="@+id/linearLayoutOfLogin"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/personalImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/courseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="用户名"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorBlue"
+            android:textColorHint="@color/colorLightBlue"
+            android:theme="@style/MyEditText"
+            tools:ignore="LabelFor" />
+
+
+        <EditText
+            android:id="@+id/courseTeacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="密码"
+            android:inputType="textPassword"
+            android:textColor="@color/colorBlue"
+            android:textColorHint="@color/colorLightBlue"
+            android:theme="@style/MyEditText" />
+
+
+        <EditText
+            android:id="@+id/courseTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="故乡"
+            android:inputType="text"
+            android:textColor="@color/colorBlue"
+            android:textColorHint="@color/colorLightBlue"
+            android:theme="@style/MyEditText" />
+
+        <Button
+            android:id="@+id/addCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_selector"
+            android:text="注     册"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
