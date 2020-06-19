@@ -11,14 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de94e605-fe3a-47c8-8518-3e8cecd61047" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/studentsystem/AdvertisementActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/studentsystem/AdvertisementActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/studentsystem/ManageActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/studentsystem/ManageActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/studentsystem/utils/dbHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/studentsystem/utils/dbHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/studentsystem/utils/dbHelperOfCourse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_manage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_manage.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/manage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/manage.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,9 +52,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="android.sdk.path" value="E:/Android/AndroidSDK" />
-    <property name="last_opened_file_path" value="E:/Android/Projects/StudentSystem" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="android.sdk.path" value="$PROJECT_DIR$/../../AndroidSDK" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -174,6 +168,9 @@
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/StudentSystem" />
+    </ignored-roots>
     <MESSAGE value="测试git" />
     <option name="LAST_COMMIT_MESSAGE" value="测试git" />
   </component>
@@ -223,10 +220,10 @@
     </state>
     <state width="2005" height="335" key="GridCell.Tab.0.right/2560.370.1280.687/0.0.2048.1112@0.0.2048.1112" timestamp="1592608787324" />
     <state width="1649" height="305" key="GridCell.Tab.0.right/2560.370.983.687/0.0.1692.1112@0.0.1692.1112" timestamp="1591550971341" />
-    <state x="526" y="198" key="SettingsEditor" timestamp="1592605730898">
+    <state x="526" y="198" key="SettingsEditor" timestamp="1592609694480">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="526" y="198" key="SettingsEditor/2560.370.1280.687/0.0.2048.1112@0.0.2048.1112" timestamp="1592605730898" />
+    <state x="526" y="198" key="SettingsEditor/2560.370.1280.687/0.0.2048.1112@0.0.2048.1112" timestamp="1592609694480" />
     <state x="526" y="198" key="SettingsEditor/2560.370.1536.824/0.0.2048.1112@0.0.2048.1112" timestamp="1592379852025" />
     <state x="617" y="278" key="Vcs.Push.Dialog.v2" timestamp="1592607783047">
       <screen x="0" y="0" width="2048" height="1112" />
