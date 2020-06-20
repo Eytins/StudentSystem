@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class ManageActivity extends AppCompatActivity {
 
@@ -73,7 +74,6 @@ public class ManageActivity extends AppCompatActivity {
         courseTime = findViewById(R.id.courseTime);
         addCourse = findViewById(R.id.addCourse);
         listOfCourseInManage = findViewById(R.id.listOfCourseInManage);
-
 
         //创建链接，并打开数据库
         dbHelper = new dbHelper(this, DB_Name, null, 1);
@@ -125,13 +125,13 @@ public class ManageActivity extends AppCompatActivity {
 
         listOfCourseInManage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
 
                 LayoutInflater layoutInflater = LayoutInflater.from(ManageActivity.this);
-                View           editCourse     = layoutInflater.inflate(R.layout.edit_course, null);
-                TextView courseName = editCourse.findViewById(R.id.textView6);
+                final View     editCourse     = layoutInflater.inflate(R.layout.edit_course, null);
+                TextView       courseName     = editCourse.findViewById(R.id.textView6);
 
-                String name = ((TextView) view.findViewById(R.id.textView)).getText().toString();
+                final String name = ((TextView) view.findViewById(R.id.textView)).getText().toString();
                 courseName.setText(name);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ManageActivity.this);
@@ -140,12 +140,57 @@ public class ManageActivity extends AppCompatActivity {
                 builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //todo:将两个editText中的内容的修改执行到数据库
 
+                        //将两个editText中的内容的修改执行到数据库
+
+                        EditText teacher = editCourse.findViewById(R.id.editTextTextPersonName2);
+                        EditText time    = editCourse.findViewById(R.id.editTextTextPersonName3);
+
+                        dbHelper = new dbHelper(ManageActivity.this, DB_Name, null, 1);
+                        database = dbHelper.getWritableDatabase();
+                        ContentValues values = new ContentValues();
+                        values.put("courseTeacher", teacher.getText().toString().trim());
+                        values.put("courseTime", time.getText().toString().trim());
+                        String   whereClause = "courseName=?";
+                        String[] whereArgs   = new String[]{name};
+                        database.update(dbHelper.TB_Name2, values, whereClause, whereArgs);
+                        showCoursesOnListView();
                     }
                 });
 
                 builder.show();
+            }
+        });
+
+        listOfCourseInManage.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, final View view, final int position, final long id) {
+                //长按时，出现弹框问是否删除(在list中remove一条记录并重新添加适配器)
+                AlertDialog.Builder builder = new AlertDialog.Builder(ManageActivity.this);
+                builder.setIcon(R.mipmap.logo);
+                builder.setTitle("警告");
+                builder.setMessage("您是否要删除这条记录");
+                builder.setPositiveButton("否", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setNegativeButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //执行数据库中删除，然后显示一遍
+                        dbHelper = new dbHelper(ManageActivity.this, DB_Name, null, 1);
+                        database = dbHelper.getWritableDatabase();
+                        final String name        = ((TextView) view.findViewById(R.id.textView)).getText().toString();
+                        String       whereClause = "courseName=?";
+                        String[]     whereArgs   = new String[]{name};
+                        database.delete(dbHelper.TB_Name2, whereClause, whereArgs);
+                        showCoursesOnListView();
+                    }
+                });
+                builder.create().show();
+                return true;
             }
         });
 

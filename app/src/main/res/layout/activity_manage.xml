@@ -67,12 +67,23 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="单击编辑，长按删除" />
+
     <ListView
         android:id="@+id/listOfCourseInManage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/line2"
+        android:layout_below="@+id/textView7"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_alignStart="@+id/line2"
         android:layout_alignEnd="@+id/line2" />
+
 </RelativeLayout>
