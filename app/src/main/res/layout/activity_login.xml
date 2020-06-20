@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".LoginActivity"
-    android:background="@drawable/login_bg">
+    android:background="@drawable/bg">
 
     <ImageView
         android:id="@+id/personalImage"
@@ -26,8 +26,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:orientation="vertical">
-
-        <!--todo:候选已经填过的用户名-->
 
         <AutoCompleteTextView
             android:id="@+id/courseName"
