@@ -1,22 +1,27 @@
 package com.example.studentsystem;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.studentsystem.utils.dbHelper;
@@ -38,7 +43,7 @@ public class ManageActivity extends AppCompatActivity {
     String         DB_Name = "mydb";
     SQLiteDatabase database;
     Cursor         cursor;
-    boolean        dbFlag=true;
+    boolean        dbFlag  = true;
 
     private static String[] PERMISSIONS_STORGE      = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -115,6 +120,31 @@ public class ManageActivity extends AppCompatActivity {
                 }
 
                 showCoursesOnListView();
+            }
+        });
+
+        listOfCourseInManage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                LayoutInflater layoutInflater = LayoutInflater.from(ManageActivity.this);
+                View           editCourse     = layoutInflater.inflate(R.layout.edit_course, null);
+                TextView courseName = editCourse.findViewById(R.id.textView6);
+
+                String name = ((TextView) view.findViewById(R.id.textView)).getText().toString();
+                courseName.setText(name);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ManageActivity.this);
+                builder.setView(editCourse);
+                builder.setPositiveButton("取消", null);
+                builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //todo:将两个editText中的内容的修改执行到数据库
+                    }
+                });
+
+                builder.show();
             }
         });
 
