@@ -8,9 +8,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,21 +25,21 @@ import com.example.studentsystem.utils.dbHelper;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText userName;
-    private EditText password;
-    private Button   login;
-    private TextView register;
-    private CheckBox saveUserName;
-    private TextView forgetPassword;
+    private AutoCompleteTextView userName;
+    private EditText             password;
+    private Button               login;
+    private TextView             register;
+    private CheckBox             saveUserName;
+    private TextView             forgetPassword;
 
     String savedName;
     String savedPassword;
 
     com.example.studentsystem.utils.dbHelper dbHelper;
     String                                   DB_Name = "mydb";
-    SQLiteDatabase database;
-    Cursor         cursor;
-    boolean        flag    = false;
+    SQLiteDatabase                           database;
+    Cursor                                   cursor;
+    boolean                                  flag    = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,8 @@ public class LoginActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
 
-        final SharedPreferences sharedPreferences = getSharedPreferences("saveName", MODE_PRIVATE);
+        final SharedPreferences sharedPreferences  = getSharedPreferences("saveName", MODE_PRIVATE);
+        final SharedPreferences sharedPreferences2 = getSharedPreferences("savedNameForAutoComplete", MODE_PRIVATE);
 
         userName = findViewById(R.id.courseName);
         password = findViewById(R.id.courseTeacher);
@@ -55,6 +60,35 @@ public class LoginActivity extends AppCompatActivity {
         register = findViewById(R.id.addCourse);
         saveUserName = findViewById(R.id.checkBox);
         forgetPassword = findViewById(R.id.forgetPassword);
+
+        userName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String[] allUserName = new String[sharedPreferences.getAll().size()]; // sp.getAll().size()返回的是有多少个键值对
+                allUserName = sharedPreferences2.getAll().keySet().toArray(new String[0]);
+                // sp.getAll()返回一张hash map
+                // keySet()得到的是a set of the keys.
+                // hash map是由key-value组成的
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                        LoginActivity.this,
+                        R.layout.namelist_item,
+                        allUserName
+                );
+
+                userName.setAdapter(adapter);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                password.setText(sharedPreferences.getString(userName.getText()
+                        .toString(), ""));// 自动输入密码
+            }
+        });
 
         savedName = sharedPreferences.getString("savedName", "");
         savedPassword = sharedPreferences.getString("savedPassword", "");
@@ -70,27 +104,35 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cursor = database.query(dbHelper.TB_Name, null, null, null, null, null, "uid ASC");
-                cursor.moveToFirst();
+
                 boolean admin = false;
-                while (!cursor.isAfterLast()) {
-                    if (userName.getText().toString().trim().equals(cursor.getString(1)) &&
-                            password.getText().toString().trim().equals(cursor.getString(2))) {
-                        flag = true;
-                    } else if (userName.getText().toString().trim().equals("admin") &&
-                            password.getText().toString().trim().equals("123")) {
-                        admin = true;
-                    }
-                    cursor.moveToNext();
+                if (userName.getText().toString().trim().equals("admin") &&
+                        password.getText().toString().trim().equals("123")) {
+                    admin = true;
                 }
 
-                if (admin) {
+                if (userName.getText().toString().trim().equals("admin") &&
+                        password.getText().toString().trim().equals("123")) {
                     Intent intent = new Intent();
                     intent.setClass(LoginActivity.this, ManageActivity.class);
                     startActivity(intent);
                 }
 
+                cursor = database.query(dbHelper.TB_Name, null, null, null, null, null, "uid ASC");
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+                    if (userName.getText().toString().trim().equals(cursor.getString(1)) &&
+                            password.getText().toString().trim().equals(cursor.getString(2))) {
+                        flag = true;
+                    }
+                    cursor.moveToNext();
+                }
+
                 if (flag) {
+
+                    //登陆成功后将用户名保存到sharedPreferences2中
+                    sharedPreferences2.edit().putString(userName.getText().toString().trim(), "").apply();
+
                     Toast.makeText(LoginActivity.this, "欢迎回来，" + userName.getText().toString().trim(), Toast.LENGTH_SHORT).show();
                     flag = false;
                     Intent intent = new Intent();
@@ -105,15 +147,18 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("savedName", savedName);
                         editor.putString("savedPassword", savedPassword);
-                        editor.commit();
+                        editor.apply();
                     } else {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.clear();
-                        editor.commit();
+                        editor.apply();
                     }
+
                 } else if (!flag && !admin) {
                     Toast.makeText(LoginActivity.this, "用户名或密码错误！", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
 
@@ -128,7 +173,6 @@ public class LoginActivity extends AppCompatActivity {
 
         //todo:forget password(forgetPassword)
 
-        //todo:用户名输入框的下拉框
     }
 
     long firstTime = 0;

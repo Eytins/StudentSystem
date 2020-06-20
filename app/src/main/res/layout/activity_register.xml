@@ -14,12 +14,13 @@
         android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/default_personal_image" />
 
     <LinearLayout
         android:id="@+id/linearLayoutOfLogin"
-        android:layout_width="290dp"
+        android:layout_marginStart="50dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/personalImage"
         android:layout_centerHorizontal="true"
