@@ -18,7 +18,7 @@
 
 
         <EditText
-            android:id="@+id/courseName"
+            android:id="@+id/userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"

@@ -85,12 +85,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
 
-        userName = findViewById(R.id.courseName);
+        userName = findViewById(R.id.userName);
         password = findViewById(R.id.courseTeacher);
         hometown = findViewById(R.id.courseTime);
         register = findViewById(R.id.addCourse);
 
-        personalPicture = findViewById(R.id.personalImage);
+        personalPicture = findViewById(R.id.logo);
 
         personalPicture.setOnClickListener(new View.OnClickListener() {
             @Override

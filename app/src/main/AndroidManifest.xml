@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="q">
-        <activity android:name=".ForgetPasswordActivity"></activity>
+        <activity android:name=".ForgetPassword3Activity"></activity>
+        <activity android:name=".ForgetPassword2Activity" />
+        <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ManageActivity" />
         <activity android:name=".FirstActivity">

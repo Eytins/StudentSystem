@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         final SharedPreferences sharedPreferences  = getSharedPreferences("saveName", MODE_PRIVATE);
         final SharedPreferences sharedPreferences2 = getSharedPreferences("savedNameForAutoComplete", MODE_PRIVATE);
 
-        userName = findViewById(R.id.courseName);
+        userName = findViewById(R.id.userName);
         password = findViewById(R.id.courseTeacher);
         login = findViewById(R.id.login);
         register = findViewById(R.id.addCourse);
@@ -170,7 +170,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //todo:forget password(forgetPassword)
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(LoginActivity.this, ForgetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

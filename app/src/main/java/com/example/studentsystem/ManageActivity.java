@@ -18,7 +18,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -30,7 +29,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class ManageActivity extends AppCompatActivity {
 
@@ -69,7 +67,7 @@ public class ManageActivity extends AppCompatActivity {
             }
         }
 
-        courseName = findViewById(R.id.courseName);
+        courseName = findViewById(R.id.userName);
         courseTeacher = findViewById(R.id.courseTeacher);
         courseTime = findViewById(R.id.courseTime);
         addCourse = findViewById(R.id.addCourse);

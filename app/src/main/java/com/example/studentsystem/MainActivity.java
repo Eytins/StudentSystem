@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                         dbHelper = new dbHelper(MainActivity.this, DB_Name, null, 1);
                         database = dbHelper.getWritableDatabase();
                         final String courseName = ((TextView) view.findViewById(R.id.textView)).getText().toString();
-                        //todo:添加到数据库3中
                         ContentValues values = new ContentValues();
                         values.put("courseName", courseName);
                         values.put("student", userName);
