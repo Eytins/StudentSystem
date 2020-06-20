@@ -136,7 +136,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "欢迎回来，" + userName.getText().toString().trim(), Toast.LENGTH_SHORT).show();
                     flag = false;
                     Intent intent = new Intent();
-                    //todo:进入MainActivity时传一个参数userName
                     intent.putExtra("userName", userName.getText().toString());
                     intent.setClass(LoginActivity.this, MainActivity.class);
                     startActivity(intent);

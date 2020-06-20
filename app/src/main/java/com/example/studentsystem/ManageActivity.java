@@ -108,10 +108,9 @@ public class ManageActivity extends AppCompatActivity {
                             Toast.makeText(ManageActivity.this, "发生未知错误", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(ManageActivity.this, "添加成功", Toast.LENGTH_SHORT).show();
-                            //todo:最后把这里复原
-                            /*courseName.setText("");
+                            courseName.setText("");
                             courseTeacher.setText("");
-                            courseTime.setText("");*/
+                            courseTime.setText("");
                         }
                     } else {
                         Toast.makeText(ManageActivity.this, "课程名称已存在", Toast.LENGTH_SHORT).show();
@@ -169,7 +168,7 @@ public class ManageActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ManageActivity.this);
                 builder.setIcon(R.mipmap.logo);
                 builder.setTitle("警告");
-                builder.setMessage("您是否要删除这条记录");
+                builder.setMessage("您是否要删除这门课程");
                 builder.setPositiveButton("否", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -205,9 +204,6 @@ public class ManageActivity extends AppCompatActivity {
         List<Map<String, Object>> list = new ArrayList<>();
 
         while (!cursor.isAfterLast()) {
-            cursor.getString(1);
-            cursor.getString(2);
-            cursor.getString(3);
 
             Map<String, Object> map = new HashMap<>();
             map.put("courseName", cursor.getString(1));

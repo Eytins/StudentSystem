@@ -8,6 +8,7 @@ public class dbHelper extends SQLiteOpenHelper {
 
     public String TB_Name = "userinfo";
     public String TB_Name2 = "course";
+    public String TB_Name3 = "courseStudentSelected";
 
     public dbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -29,12 +30,19 @@ public class dbHelper extends SQLiteOpenHelper {
                 + "courseTeacher varchar,"
                 + "courseTime varchar"
                 + ")");
+
+        sqLiteDatabase.execSQL("create table if not exists " + TB_Name3
+                + "(cid integer primary key autoincrement,"
+                + "courseName varchar,"
+                + "student varchar"
+                + ")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("drop table if exists " + TB_Name);
         sqLiteDatabase.execSQL("drop table if exists " + TB_Name2);
+        sqLiteDatabase.execSQL("drop table if exists " + TB_Name3);
         onCreate(sqLiteDatabase);
     }
 }
