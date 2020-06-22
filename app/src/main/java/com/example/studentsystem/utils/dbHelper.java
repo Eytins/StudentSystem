@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class dbHelper extends SQLiteOpenHelper {
 
-    public String TB_Name = "userinfo";
+    public String TB_Name  = "userinfo";
     public String TB_Name2 = "course";
     public String TB_Name3 = "courseStudentSelected";
 

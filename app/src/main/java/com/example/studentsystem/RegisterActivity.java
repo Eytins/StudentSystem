@@ -50,9 +50,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     com.example.studentsystem.utils.dbHelper dbHelper;
     String                                   DB_Name = "mydb";
-    SQLiteDatabase database;
-    Cursor         cursor;
-    boolean        flag    = true;
+    SQLiteDatabase                           database;
+    Cursor                                   cursor;
+    boolean                                  flag    = true;
 
     private ImageView personalPicture;
 

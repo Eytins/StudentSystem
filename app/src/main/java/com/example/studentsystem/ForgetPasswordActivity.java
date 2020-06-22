@@ -54,13 +54,13 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                     cursor.moveToNext();
                 }
 
-                if (flag){
+                if (flag) {
                     Intent intent = new Intent();
                     intent.putExtra("username", userNameOfForget.getText().toString());
                     intent.setClass(ForgetPasswordActivity.this, ForgetPassword2Activity.class);
                     startActivity(intent);
-                }else {
-                    Toast.makeText(ForgetPasswordActivity.this,"无此用户",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ForgetPasswordActivity.this, "无此用户", Toast.LENGTH_SHORT).show();
                 }
             }
         });

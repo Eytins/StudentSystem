@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
                         //执行数据库中选择，然后显示一遍
                         dbHelper = new dbHelper(MainActivity.this, DB_Name, null, 1);
                         database = dbHelper.getWritableDatabase();
-                        final String courseName = ((TextView) view.findViewById(R.id.textView)).getText().toString();
-                        ContentValues values = new ContentValues();
+                        final String  courseName = ((TextView) view.findViewById(R.id.textView)).getText().toString();
+                        ContentValues values     = new ContentValues();
                         values.put("courseName", courseName);
                         values.put("student", userName);
                         long rowId = database.insert(dbHelper.TB_Name3, null, values);
